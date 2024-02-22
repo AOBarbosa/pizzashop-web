@@ -1,18 +1,27 @@
 import { ArrowRight, Search, X } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { TableCell, TableRow } from '@/components/ui/table'
 
-// interface OrderTableRowProps {}
+import { OrderDetails } from './order-details'
+
+//! interface OrderTableRowProps {}
 
 export function OrderTableRow() {
   return (
     <TableRow>
       <TableCell>
-        <Button size={'xs'} variant="outline">
-          <Search className="size-3" />
-          <span className="sr-only">Detalhes do pedido</span>
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button size={'xs'} variant="outline">
+              <Search className="size-3" />
+              <span className="sr-only">Detalhes do pedido</span>
+            </Button>
+          </DialogTrigger>
+
+          <OrderDetails />
+        </Dialog>
       </TableCell>
 
       <TableCell className="font-mono text-xs font-medium">
@@ -21,9 +30,11 @@ export function OrderTableRow() {
 
       <TableCell className="text-muted-foreground">há 15 minutos</TableCell>
 
-      <TableCell className="flex items-center gap-2">
-        <span className="size-2 rounded-full bg-slate-400" />
-        <span className="font-medium text-muted-foreground">Pendente</span>
+      <TableCell>
+        <div className="flex items-center gap-2">
+          <span className="size-2 rounded-full bg-slate-400" />
+          <span className="font-medium text-muted-foreground">Pendente</span>
+        </div>
       </TableCell>
 
       <TableCell className="font-medium">André de Oliveira Barbosa</TableCell>
