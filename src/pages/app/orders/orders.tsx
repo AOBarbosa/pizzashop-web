@@ -1,16 +1,15 @@
-import { ArrowRight, Search, X } from 'lucide-react'
 import { Helmet } from 'react-helmet-async'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+
+import { OrderTableFilters } from './order-table-filters'
+import { OrderTableRow } from './order-table-row'
 
 export function Orders() {
   return (
@@ -21,10 +20,7 @@ export function Orders() {
       </div>
 
       <div className="space-y-2.5">
-        <form className="flex items-center gap-2">
-          <span className="text-sm font-semibold">Filtros:</span>
-          <Input placeholder="Nome do cliente" className="h-8 w-[320px]" />
-        </form>
+        <OrderTableFilters />
 
         <div className="rounded-md border">
           <Table>
@@ -42,49 +38,9 @@ export function Orders() {
             </TableHeader>
 
             <TableBody>
-              <TableRow>
-                <TableCell>
-                  <Button size={'xs'} variant="outline">
-                    <Search className="size-3" />
-                    <span className="sr-only">Detalhes do pedido</span>
-                  </Button>
-                </TableCell>
-
-                <TableCell className="font-mono text-xs font-medium">
-                  asjhg12u4g34j5bjh234g
-                </TableCell>
-
-                <TableCell className="text-muted-foreground">
-                  há 15 minutos
-                </TableCell>
-
-                <TableCell className="flex items-center gap-2">
-                  <span className="size-2 rounded-full bg-slate-400" />
-                  <span className="font-medium text-muted-foreground">
-                    Pendente
-                  </span>
-                </TableCell>
-
-                <TableCell className="font-medium">
-                  André de Oliveira Barbosa
-                </TableCell>
-
-                <TableCell className="font-medium">R$ 149,90</TableCell>
-
-                <TableCell className="">
-                  <Button size={'xs'} variant={'outline'}>
-                    <ArrowRight className="mr-2 size-3" />
-                    Aprovar
-                  </Button>
-                </TableCell>
-
-                <TableCell className="">
-                  <Button size={'xs'} variant={'ghost'}>
-                    <X className="mr-2 size-3" />
-                    Cancelar
-                  </Button>
-                </TableCell>
-              </TableRow>
+              {Array.from({ length: 10 }).map((_, index) => {
+                return <OrderTableRow key={index} />
+              })}
             </TableBody>
           </Table>
         </div>
