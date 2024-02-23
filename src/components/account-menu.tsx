@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import { Building, ChevronDown, Divide, LogOut } from 'lucide-react'
+import { Building, ChevronDown, LogOut } from 'lucide-react'
 
 import { getManagedRestaurant } from '@/api/get-managed-restaurant'
 import { getProfile } from '@/api/get-profile'
 
+import { StoreProfileDialog } from './store-profile-dialog'
 import { Button } from './ui/button'
+import { Dialog, DialogTrigger } from './ui/dialog'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,7 +30,7 @@ export function AccountMenu() {
     })
 
   return (
-    <div>
+    <Dialog>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -63,10 +65,12 @@ export function AccountMenu() {
 
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem className="cursor-pointer">
-            <Building className="mr-2 size-4" />
-            <span>Perfil da loja</span>
-          </DropdownMenuItem>
+          <DialogTrigger asChild>
+            <DropdownMenuItem className="cursor-pointer">
+              <Building className="mr-2 size-4" />
+              <span>Perfil da loja</span>
+            </DropdownMenuItem>
+          </DialogTrigger>
 
           <DropdownMenuItem className="cursor-pointer text-rose-500 dark:text-rose-400">
             <LogOut className="mr-2 size-4" />
@@ -74,6 +78,8 @@ export function AccountMenu() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </div>
+
+      <StoreProfileDialog />
+    </Dialog>
   )
 }
